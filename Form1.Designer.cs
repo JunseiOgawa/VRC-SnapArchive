@@ -50,9 +50,12 @@
             outFilePath_textBox = new TextBox();
             gameFilePath_textBox = new TextBox();
             compressor_tab = new TabPage();
+            checkBox1 = new CheckBox();
             compressor = new Label();
             textBox1 = new TextBox();
-            checkBox1 = new CheckBox();
+            statusStrip1 = new StatusStrip();
+            toolStripStatusLabel1 = new ToolStripStatusLabel();
+            toolStripProgressBar1 = new ToolStripProgressBar();
             gameFilePath_button = new Button();
             outFilePath_button = new Button();
             button1 = new Button();
@@ -60,6 +63,7 @@
             file_tab.SuspendLayout();
             fileSubdivision_Group.SuspendLayout();
             compressor_tab.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // gameFilePath_button
@@ -82,6 +86,15 @@
             outFilePath_button.UseVisualStyleBackColor = true;
             outFilePath_button.Click += outFilePath_button_Click;
             // 
+            // button1
+            // 
+            button1.Location = new Point(292, 174);
+            button1.Name = "button1";
+            button1.Size = new Size(63, 29);
+            button1.TabIndex = 15;
+            button1.Text = "参照";
+            button1.UseVisualStyleBackColor = true;
+            // 
             // gameFilePath_Browser
             // 
             gameFilePath_Browser.RootFolder = Environment.SpecialFolder.MyPictures;
@@ -93,7 +106,7 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(432, 503);
+            tabControl1.Size = new Size(432, 475);
             tabControl1.TabIndex = 7;
             // 
             // file_tab
@@ -114,7 +127,7 @@
             file_tab.Location = new Point(4, 29);
             file_tab.Name = "file_tab";
             file_tab.Padding = new Padding(3);
-            file_tab.Size = new Size(424, 470);
+            file_tab.Size = new Size(424, 442);
             file_tab.TabIndex = 1;
             file_tab.Text = "ファイル";
             file_tab.UseVisualStyleBackColor = true;
@@ -276,33 +289,6 @@
             compressor_tab.UseVisualStyleBackColor = true;
             compressor_tab.Click += compressor_tab_Click;
             // 
-            // compressor
-            // 
-            compressor.AutoSize = true;
-            compressor.Font = new Font("ＭＳ Ｐ明朝", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            compressor.Location = new Point(8, 11);
-            compressor.Name = "compressor";
-            compressor.Size = new Size(58, 23);
-            compressor.TabIndex = 13;
-            compressor.Text = "圧縮";
-            compressor.Click += label1_Click_1;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(292, 174);
-            button1.Name = "button1";
-            button1.Size = new Size(63, 29);
-            button1.TabIndex = 15;
-            button1.Text = "参照";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(17, 175);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(269, 27);
-            textBox1.TabIndex = 16;
-            // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
@@ -313,12 +299,54 @@
             checkBox1.Text = "今月以外のフォルダを圧縮する";
             checkBox1.UseVisualStyleBackColor = true;
             // 
+            // compressor
+            // 
+            compressor.AutoSize = true;
+            compressor.Font = new Font("ＭＳ Ｐ明朝", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            compressor.Location = new Point(8, 11);
+            compressor.Name = "compressor";
+            compressor.Size = new Size(146, 23);
+            compressor.TabIndex = 13;
+            compressor.Text = "圧縮　未実装";
+            compressor.Click += label1_Click_1;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(17, 175);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(269, 27);
+            textBox1.TabIndex = 16;
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.ImageScalingSize = new Size(20, 20);
+            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1 });
+            statusStrip1.Location = new Point(0, 475);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(432, 26);
+            statusStrip1.TabIndex = 8;
+            statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            toolStripStatusLabel1.Size = new Size(37, 20);
+            toolStripStatusLabel1.Text = "       ";
+            toolStripStatusLabel1.Click += toolStripStatusLabel1_Click;
+            // 
+            // toolStripProgressBar1
+            // 
+            toolStripProgressBar1.Name = "toolStripProgressBar1";
+            toolStripProgressBar1.Size = new Size(100, 18);
+            toolStripProgressBar1.Click += toolStripProgressBar1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(432, 503);
+            ClientSize = new Size(432, 501);
+            Controls.Add(statusStrip1);
             Controls.Add(tabControl1);
             Name = "Form1";
             Text = "VRC-SnapArchive   フェファ製 ver0.1";
@@ -329,7 +357,10 @@
             fileSubdivision_Group.PerformLayout();
             compressor_tab.ResumeLayout(false);
             compressor_tab.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -355,5 +386,8 @@
         private Label compressor;
         private TextBox textBox1;
         private CheckBox checkBox1;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel toolStripStatusLabel1;
+        private ToolStripProgressBar toolStripProgressBar1;
     }
 }
