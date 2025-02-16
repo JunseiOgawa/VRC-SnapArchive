@@ -1,47 +1,24 @@
-# Build Folders (you can keep publish folders if needed)
-bin/
-obj/
+# ビルドの成果物
+[Bb]in/
+[Oo]bj/
 
-# User-specific files
+# Visual Studio で生成されるユーザー固有ファイル
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
 
-# Auto generated files
-Generated\ Files/
-
-# Visual Studio folders
-.vs/
-*.code-workspace
-
-# Backup & report files from converting an old project file
-Backup*/
-UpgradeLog*.XML
-UpgradeLog*.htm
-
-# NuGet Packages
-*.nupkg
-# The packages folder can be ignored because of Package Restore
-**/packages/*
-!**/packages/build/
-!**/packages/repositories.config
-
-# Microsoft Visual Studio Code settings
+# Visual Studio による一時ファイル・キャッシュ
 .vscode/
+.vs/
 
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+# NuGet 関連
+packages/
+*.nupkg
 
-# Folder config file
-Desktop.ini
+# その他の一時ファイル
+*.log
 
-# Visual Studio profiler
-*.psess
-*.vsp
-*.vspx
-*.sap
-
-# Others
-_ReSharper.Caches/
+# Windows Forms 関連のリソース一時ファイル等（必要に応じて）
+*.cache
+*.pidb
