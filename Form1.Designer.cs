@@ -35,8 +35,12 @@
             outFilePath_Browser = new FolderBrowserDialog();
             tabControl1 = new TabControl();
             file_tab = new TabPage();
-            exifWorldName_label = new Label();
+            Exif_CheckBox = new CheckBox();
+            Exif_groupBox = new GroupBox();
+            exifDateData_CheckBox = new CheckBox();
             exifWorldName_checkBox = new CheckBox();
+            Exif_label = new Label();
+            exifWorldName_label = new Label();
             fileReName_checkBox = new CheckBox();
             fileReName_comboBox = new ComboBox();
             fileSubdivision_Group = new GroupBox();
@@ -61,6 +65,7 @@
             button1 = new Button();
             tabControl1.SuspendLayout();
             file_tab.SuspendLayout();
+            Exif_groupBox.SuspendLayout();
             fileSubdivision_Group.SuspendLayout();
             compressor_tab.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -106,13 +111,15 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(432, 475);
+            tabControl1.Size = new Size(416, 668);
             tabControl1.TabIndex = 7;
             // 
             // file_tab
             // 
+            file_tab.Controls.Add(Exif_CheckBox);
+            file_tab.Controls.Add(Exif_groupBox);
+            file_tab.Controls.Add(Exif_label);
             file_tab.Controls.Add(exifWorldName_label);
-            file_tab.Controls.Add(exifWorldName_checkBox);
             file_tab.Controls.Add(fileReName_checkBox);
             file_tab.Controls.Add(fileReName_comboBox);
             file_tab.Controls.Add(fileSubdivision_Group);
@@ -127,31 +134,78 @@
             file_tab.Location = new Point(4, 29);
             file_tab.Name = "file_tab";
             file_tab.Padding = new Padding(3);
-            file_tab.Size = new Size(424, 442);
+            file_tab.Size = new Size(408, 635);
             file_tab.TabIndex = 1;
             file_tab.Text = "ファイル";
             file_tab.UseVisualStyleBackColor = true;
             // 
-            // exifWorldName_label
+            // Exif_CheckBox
             // 
-            exifWorldName_label.AutoSize = true;
-            exifWorldName_label.Location = new Point(8, 412);
-            exifWorldName_label.Name = "exifWorldName_label";
-            exifWorldName_label.Size = new Size(343, 20);
-            exifWorldName_label.TabIndex = 21;
-            exifWorldName_label.Text = "ONにしておくと写真整理の時便利になります。(ON推奨)";
+            Exif_CheckBox.AutoSize = true;
+            Exif_CheckBox.Checked = true;
+            Exif_CheckBox.CheckState = CheckState.Checked;
+            Exif_CheckBox.Location = new Point(8, 412);
+            Exif_CheckBox.Name = "Exif_CheckBox";
+            Exif_CheckBox.Size = new Size(161, 24);
+            Exif_CheckBox.TabIndex = 21;
+            Exif_CheckBox.Text = "写真にexifを追加する";
+            Exif_CheckBox.UseVisualStyleBackColor = true;
+            Exif_CheckBox.CheckedChanged += Exif_CheckBox_CheckedChanged;
+            // 
+            // Exif_groupBox
+            // 
+            Exif_groupBox.Controls.Add(exifDateData_CheckBox);
+            Exif_groupBox.Controls.Add(exifWorldName_checkBox);
+            Exif_groupBox.Location = new Point(8, 442);
+            Exif_groupBox.Name = "Exif_groupBox";
+            Exif_groupBox.Size = new Size(299, 85);
+            Exif_groupBox.TabIndex = 23;
+            Exif_groupBox.TabStop = false;
+            Exif_groupBox.Text = "Exif設定";
+            Exif_groupBox.Enter += Exif_groupBox_Enter;
+            // 
+            // exifDateData_CheckBox
+            // 
+            exifDateData_CheckBox.AutoSize = true;
+            exifDateData_CheckBox.Checked = true;
+            exifDateData_CheckBox.CheckState = CheckState.Checked;
+            exifDateData_CheckBox.Location = new Point(6, 56);
+            exifDateData_CheckBox.Name = "exifDateData_CheckBox";
+            exifDateData_CheckBox.Size = new Size(191, 24);
+            exifDateData_CheckBox.TabIndex = 21;
+            exifDateData_CheckBox.Text = "exifに日付情報を追加する";
+            exifDateData_CheckBox.UseVisualStyleBackColor = true;
             // 
             // exifWorldName_checkBox
             // 
             exifWorldName_checkBox.AutoSize = true;
             exifWorldName_checkBox.Checked = true;
             exifWorldName_checkBox.CheckState = CheckState.Checked;
-            exifWorldName_checkBox.Location = new Point(8, 381);
+            exifWorldName_checkBox.Location = new Point(6, 26);
             exifWorldName_checkBox.Name = "exifWorldName_checkBox";
             exifWorldName_checkBox.Size = new Size(175, 24);
             exifWorldName_checkBox.TabIndex = 20;
             exifWorldName_checkBox.Text = "exifにワールドを追加する";
             exifWorldName_checkBox.UseVisualStyleBackColor = true;
+            // 
+            // Exif_label
+            // 
+            Exif_label.AutoSize = true;
+            Exif_label.Font = new Font("ＭＳ Ｐ明朝", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            Exif_label.Location = new Point(8, 381);
+            Exif_label.Name = "Exif_label";
+            Exif_label.Size = new Size(112, 23);
+            Exif_label.TabIndex = 22;
+            Exif_label.Text = "EXIF情報";
+            // 
+            // exifWorldName_label
+            // 
+            exifWorldName_label.AutoSize = true;
+            exifWorldName_label.Location = new Point(8, 530);
+            exifWorldName_label.Name = "exifWorldName_label";
+            exifWorldName_label.Size = new Size(343, 20);
+            exifWorldName_label.TabIndex = 21;
+            exifWorldName_label.Text = "ONにしておくと写真整理の時便利になります。(ON推奨)";
             // 
             // fileReName_checkBox
             // 
@@ -283,7 +337,7 @@
             compressor_tab.Location = new Point(4, 29);
             compressor_tab.Name = "compressor_tab";
             compressor_tab.Padding = new Padding(3);
-            compressor_tab.Size = new Size(424, 470);
+            compressor_tab.Size = new Size(408, 635);
             compressor_tab.TabIndex = 0;
             compressor_tab.Text = "圧縮";
             compressor_tab.UseVisualStyleBackColor = true;
@@ -321,9 +375,9 @@
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1 });
-            statusStrip1.Location = new Point(0, 475);
+            statusStrip1.Location = new Point(0, 668);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(432, 26);
+            statusStrip1.Size = new Size(416, 26);
             statusStrip1.TabIndex = 8;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -332,20 +386,18 @@
             toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             toolStripStatusLabel1.Size = new Size(37, 20);
             toolStripStatusLabel1.Text = "       ";
-            toolStripStatusLabel1.Click += toolStripStatusLabel1_Click;
             // 
             // toolStripProgressBar1
             // 
             toolStripProgressBar1.Name = "toolStripProgressBar1";
             toolStripProgressBar1.Size = new Size(100, 18);
-            toolStripProgressBar1.Click += toolStripProgressBar1_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(432, 501);
+            ClientSize = new Size(432, 512);
             Controls.Add(statusStrip1);
             Controls.Add(tabControl1);
             Name = "Form1";
@@ -353,6 +405,8 @@
             tabControl1.ResumeLayout(false);
             file_tab.ResumeLayout(false);
             file_tab.PerformLayout();
+            Exif_groupBox.ResumeLayout(false);
+            Exif_groupBox.PerformLayout();
             fileSubdivision_Group.ResumeLayout(false);
             fileSubdivision_Group.PerformLayout();
             compressor_tab.ResumeLayout(false);
@@ -382,12 +436,16 @@
         private ComboBox fileReName_comboBox;
         private CheckBox fileReName_checkBox;
         private Label exifWorldName_label;
-        private CheckBox exifWorldName_checkBox;
         private Label compressor;
         private TextBox textBox1;
         private CheckBox checkBox1;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripProgressBar toolStripProgressBar1;
+        private Label Exif_label;
+        private GroupBox Exif_groupBox;
+        private CheckBox exifWorldName_checkBox;
+        private CheckBox Exif_CheckBox;
+        private CheckBox exifDateData_CheckBox;
     }
 }
